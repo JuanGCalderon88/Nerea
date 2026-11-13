@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NEREA · Un lugar de calma</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<style>
+:root{--bg:#E4DED6;--blue:#82BBB4;--sage:#AAC4A7;--ink:#34423F;--teal:#2F6F6A;--gold:#CDAF71;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55;min-height:100vh}
+.hide{display:none!important}
+.card{background:#FBFAF8;border:1px solid #D9D2C9;border-radius:1.25rem;padding:1.1rem;box-shadow:0 2px 10px rgba(52,66,63,.06);margin-top:.8rem}
+.btn{min-height:46px;padding:.55rem 1.05rem;border-radius:999px;font-weight:600;font-size:1rem;background:var(--ink);color:#fff;border:2px solid var(--ink);cursor:pointer}
+.btn:hover{background:#46564F}
+.btn.sec{background:#fff;color:var(--ink);border-color:var(--blue)}
+.btn.sage{background:#E4EEE2;color:var(--ink);border-color:var(--sage)}
+.row{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.8rem}
+button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.tab{min-height:44px;padding:.45rem .95rem;border-radius:999px;font-weight:700;background:#fff;border:2px solid #CFC6BB;color:var(--ink);cursor:pointer}
+.tab[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip{min-height:44px;padding:.4rem .9rem;border-radius:999px;border:2px solid #CFC6BB;background:#fff;color:var(--ink);font-weight:600;cursor:pointer}
+.chip[aria-pressed=true]{background:#DDEEEB;border-color:var(--sage)}
+.pill{font-size:.72rem;font-weight:700;color:var(--ink);background:#E4EEE2;border-radius:99px;padding:.1rem .55rem;margin-left:.4rem}
+.tg{display:block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#4E7A62;font-weight:700;margin-top:.7rem}
+.prog{font-size:.8rem;color:#2F6F6A;font-weight:700;margin:0}
+.big{font-size:1.2rem;font-weight:700}
+input[type=text]{width:100%;min-height:48px;border-radius:999px;border:2px solid #CFC6BB;padding:0 1.1rem;font-size:1rem;color:var(--ink);background:#fff}
+details>summary{cursor:pointer;font-weight:700;list-style:none}
+details ol{padding-left:1.2rem;margin:.4rem 0;list-style:decimal}
+.sos{position:fixed;right:.75rem;top:calc(env(safe-area-inset-top,0px) + .75rem);z-index:30;min-height:44px;padding:.5rem .95rem;border-radius:999px;background:var(--ink);color:#fff;font-weight:700;border:2px solid #fff;box-shadow:0 4px 14px rgba(52,66,63,.35);cursor:pointer}
+.ov{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:1rem;overflow-y:auto;background:var(--ink);color:#fff}
+.line{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 1.1rem;border-radius:1rem;background:#F4F1EC;border:2px solid var(--blue);text-decoration:none;color:var(--ink);margin:.55rem 0}
+.line .n{font-size:2rem;font-weight:800;line-height:1}
+.line small{display:block;color:#5B6663}
+.ov .line{background:#fff;border-color:#fff;padding:1.2rem}.ov .line .n{font-size:2.7rem}
+@keyframes breath{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+@keyframes halo{0%,100%{transform:scale(.88);opacity:.4}50%{transform:scale(1.22);opacity:.12}}
+@keyframes inh{0%,49.9%{opacity:1}50%,100%{opacity:0}}
+@keyframes exh{0%,49.9%{opacity:0}50%,100%{opacity:1}}
+.hero{padding:.7rem}.dove{display:block;width:11rem;height:auto;border-radius:1.6rem;box-shadow:0 8px 24px rgba(52,66,63,.22);animation:breath 4s ease-in-out infinite;transform-origin:center}
+.lbl{position:relative;height:1.5rem;font-weight:700;color:#2F6F6A;text-align:center}
+.lbl span{position:absolute;inset:0}.lbl .a{animation:inh 4s linear infinite}.lbl .b{animation:exh 4s linear infinite}
+@media (prefers-reduced-motion:reduce){.dove{animation:none}}
+</style>
+</head>
+<body>
+<button id="sos" class="sos" type="button">Ayuda ahora</button>
+<main class="mx-auto max-w-xl px-4 pt-14 pb-10">
+  <div class="flex flex-col items-center">
+    <div class="hero"><img class="dove" width="176" height="185" src="data:image/jpeg;base64,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" alt="Paloma geométrica en tonos turquesa y gris perla que se expande y se contrae para guiar la respiración"></div>
+    <div class="lbl w-44" aria-hidden="true"><span class="a">Inhala</span><span class="b">Exhala</span></div>
+    <h1 class="text-3xl font-extrabold tracking-wide">NEREA</h1>
+    <p class="text-sm opacity-80 text-center">Un lugar de calma, paso a paso</p>
+  </div>
+
+  <div id="tabs" role="tablist" aria-label="Secciones" class="row" style="justify-content:center">
+    <button class="tab" role="tab" data-t="crisis" aria-selected="true">Estabilización</button>
+    <button class="tab" role="tab" data-t="lib" aria-selected="false">Estrategias</button>
+    <button class="tab" role="tab" data-t="eval" aria-selected="false">Autoevaluación</button>
+    <button class="tab" role="tab" data-t="apoyo" aria-selected="false">Ayuda</button>
+  </div>
+
+  <!-- 1 Estabilización -->
+  <section id="p-crisis" role="tabpanel">
+    <div id="start" class="card">
+      <h2 class="big">Estás en un lugar tranquilo</h2>
+      <p class="mt-1">Te acompaño un paso a la vez, sin prisa. Elige cómo quieres empezar; puedes cambiar de sección cuando quieras.</p>
+      <div class="row">
+        <button class="btn" id="std" type="button">Quiero calmarme ahora</button>
+        <button class="btn sec" id="toEval" type="button">Contar cómo me siento</button>
+        <button class="btn sec" id="toLib" type="button">Ver estrategias</button>
+      </div>
+      <label class="tg" for="free">O cuéntame con tus palabras cómo estás</label>
+      <div class="flex gap-2 mt-1"><input id="free" type="text" autocomplete="off" placeholder="Ej.: me late muy rápido y siento que me ahogo"><button id="freeGo" class="btn" type="button">Enviar</button></div>
+    </div>
+    <div id="run" class="card hide" aria-live="polite"></div>
+  </section>
+
+  <!-- 2 Biblioteca -->
+  <section id="p-lib" role="tabpanel" class="hide">
+    <div class="card">
+      <label class="tg" style="margin-top:0" for="q">Buscar una estrategia</label>
+      <input id="q" type="text" autocomplete="off" placeholder="Ej.: falta de aire, agua fría, pensamientos…">
+      <div id="cats" class="row"></div>
+    </div>
+    <div id="libList"></div>
+  </section>
+
+  <!-- 3 Autoevaluación -->
+  <section id="p-eval" role="tabpanel" class="hide">
+    <div class="card">
+      <h2 class="big">¿Qué sientes ahora mismo?</h2>
+      <p class="text-sm">Marca todo lo que sientas. Puedes elegir varias.</p>
+      <div id="syms" class="row"></div>
+      <label class="tg" for="inten">¿Qué tan fuerte es? <span id="intv">5</span>/10</label>
+      <input id="inten" type="range" min="0" max="10" value="5" class="w-full" style="accent-color:#5FA8A0">
+      <div class="row"><button id="rec" class="btn" type="button">Ver qué me puede ayudar</button></div>
+    </div>
+    <div id="res" aria-live="polite"></div>
+  </section>
+
+  <!-- 4 Apoyo -->
+  <section id="p-apoyo" role="tabpanel" class="hide">
+    <div class="card">
+      <h2 class="big">Ayuda inmediata en Colombia</h2>
+      <p class="text-sm">Toca una línea para llamar. No necesitas estar seguro/a de que sea “una verdadera emergencia” para pedir ayuda.</p>
+      <div class="lines"></div>
+      <p class="text-sm mt-2">Si estás en peligro inmediato, llama al <strong>123</strong>. Revisa que los números sigan vigentes en fuentes oficiales.</p>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="fund">
+    <h2 id="fund" class="font-bold">En qué se basa NEREA</h2>
+    <p class="text-sm mt-1">Los ejercicios de NEREA vienen de técnicas que especialistas han estudiado y publicado en fuentes científicas, como la Biblioteca Nacional de Medicina de Estados Unidos (PubMed) y guías de organizaciones de psicología como la APA. NEREA no es una guía oficial de esas instituciones, no da diagnósticos y <strong>no reemplaza a un profesional de la salud mental</strong>.</p>
+    <p class="text-sm mt-1">Si quieres leer más:
+      <a class="underline" target="_blank" rel="noopener" href="https://pubmed.ncbi.nlm.nih.gov/?term=diaphragmatic+breathing+anxiety">respirar con la barriga</a> ·
+      <a class="underline" target="_blank" rel="noopener" href="https://pubmed.ncbi.nlm.nih.gov/?term=grounding+technique+anxiety">volver al presente</a> ·
+      <a class="underline" target="_blank" rel="noopener" href="https://pubmed.ncbi.nlm.nih.gov/?term=cognitive+defusion">mirar los pensamientos desde afuera</a> ·
+      <a class="underline" target="_blank" rel="noopener" href="https://www.apa.org">APA</a></p>
+  </section>
+</main>
+
+<!-- STOP-WORK -->
+<div id="crisis" class="ov hide" role="alertdialog" aria-modal="true" aria-labelledby="crT">
+  <div class="w-full max-w-md py-4">
+    <h2 id="crT" class="text-2xl font-extrabold mb-2" tabindex="-1">Hagamos una pausa. Estoy aquí contigo.</h2>
+    <p class="mb-2">Detuve el ejercicio. Gracias por contármelo: lo que sientes es importante y no tienes que cargarlo solo/a.</p>
+    <p class="mb-3">Esta herramienta no es suficiente para este momento. Por favor, llama ahora a una de estas líneas o acércate a una persona de confianza que esté cerca de ti.</p>
+    <div class="lines"></div>
+    <p class="my-3 font-semibold">Si estás en peligro inmediato, llama al 123.</p>
+    <button id="crX" class="btn sec w-full" type="button">Volver al inicio</button>
+  </div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const LINES = [['123','Línea de Emergencias','Peligro inmediato'],['106','Línea 106','Apoyo emocional y crisis'],['155','Línea 155 / Línea Púrpura','Atención integral']];
+document.querySelectorAll('.lines').forEach(e => e.innerHTML = LINES.map(l => `<a class="line" href="tel:${l[0]}"><span><strong>${l[1]}</strong><small>${l[2]}</small></span><span class="n">${l[0]}</span></a>`).join(''));
+
+const T = [
+{id:'diafragmatica',n:'Respirar hondo con la barriga',c:'Cuerpo y respiración',b:1,k:'respirar aire ahogo falta de aire panico corazon abdomen barriga paloma',p:'Ayuda a que tu cuerpo se calme al respirar más despacio y más profundo.',s:['Siéntate cómodo/a. Pon una mano en el pecho y otra sobre la barriga.','Toma aire por la nariz y siente cómo se infla tu barriga. Acompaña a la paloma: inhala mientras crece.','Suelta el aire despacio por la boca, como si soplaras por una pajilla, mientras la paloma se achica. Hazlo 5 veces.']},
+{id:'vagal',n:'Soltar el aire más largo',c:'Cuerpo y respiración',k:'exhalar soltar aire zumbido corazon latidos calmar',p:'Soltar el aire más lento de lo que lo tomas le avisa a tu cuerpo que puede relajarse.',s:['Toma aire suave por la nariz contando hasta 4.','Suéltalo contando hasta 6, haciendo un “mmm” suave. Siente la vibración en el pecho.','Repite 5 veces, a tu ritmo.']},
+{id:'caja',n:'Respirar en cuadrado',c:'Cuerpo y respiración',k:'caja cuadrado contar ritmo respirar',p:'Un ritmo parejo y fácil de contar le da calma a tu cuerpo y a tu mente.',s:['Toma aire contando hasta 4.','Aguanta el aire suavemente 4 segundos. Si te mareas, sáltate esta pausa.','Suelta el aire contando hasta 4 y descansa 4 antes de volver a tomar. Haz 4 vueltas.']},
+{id:'temperatura',n:'Agua fresca o fría',c:'Cuerpo y respiración',k:'agua fria frio temperatura cara munecas calor',p:'El frío suave en la cara o en las muñecas ayuda a que tu cuerpo se calme más rápido.',s:['Ve a un lavabo o busca un paño o una botella fría.','Mójate la cara o las muñecas con agua fresca o fría durante 15 a 30 segundos, sin que duela.','Respira despacio y fíjate cómo cambia tu cuerpo. Cuidado: si tienes algún problema del corazón o de salud, antes pregúntale a un profesional.']},
+{id:'grounding',n:'Volver al presente con los sentidos (5-4-3-2-1)',c:'Sentidos y presente',k:'sentidos presente ver tocar oir 54321 mente en blanco',p:'Al fijarte en lo que ves, tocas y oyes, tu mente sale de la preocupación y vuelve a este momento.',s:['Mira a tu alrededor y nombra 5 cosas que ves.','Toca 4 cosas y fíjate si son suaves, duras, frías o tibias.','Escucha 3 sonidos, cercanos o lejanos.','Busca 2 olores, o recuerda dos que te gusten.','Fíjate en 1 sabor, o toma un sorbo de agua despacio.']},
+{id:'presente',n:'Recordar dónde estoy',c:'Sentidos y presente',k:'irreal sueno desconectado lejano presente bloqueo blanco',p:'Sirve cuando todo se siente como un sueño, lejano, o cuando la mente se queda en blanco.',s:['Di en voz alta tu nombre, la fecha de hoy y dónde estás.','Aprieta los pies contra el suelo y siente cómo te sostiene durante 10 segundos.','Toma un objeto y descríbelo: color, peso y textura. Estás aquí y ahora.']},
+{id:'defusion',n:'Mirar el pensamiento desde afuera',c:'Pensamientos',k:'pensamientos catastroficos miedo obsesivo dar vueltas rumiar',p:'Te ayuda a ver un pensamiento como algo que pasa por tu mente, no como una verdad.',s:['Piensa cuál es el pensamiento que más te asusta.','Dilo así: “Estoy teniendo el pensamiento de que…” y complétalo.','Agrega: “Y es solo un pensamiento”. Déjalo pasar como una nube, sin pelear con él.']},
+{id:'reestructuracion',n:'Lo que pienso y lo que realmente pasa',c:'Pensamientos',k:'catastrofico realidad hechos miedo peor',p:'Te ayuda a separar lo que de verdad sabes de lo que tu mente imagina.',s:['Piensa en algo cierto que apoye ese miedo, y en algo cierto que lo contradiga.','Pregúntate: “¿Qué le diría a un amigo que piensa esto?”.','Imagina qué es lo más probable que pase, aunque no sea perfecto.']},
+{id:'cinestesico',n:'Soltar la tensión con el cuerpo',c:'Movimiento',k:'movimiento tension temblor inquietud musculos relajar caminar',p:'Mover el cuerpo ayuda a soltar la energía que se queda atrapada cuando estamos agobiados.',s:['Aprieta los puños y sube los hombros 5 segundos; luego suelta de golpe. Hazlo 2 veces.','Empuja una pared con las dos manos durante 10 segundos y suelta.','Camina despacio 1 minuto, sintiendo cada paso.']}
+];
+const SYM = [
+['taq','Corazón acelerado',{diafragmatica:3,vagal:3,temperatura:2,caja:1}],
+['aho','Sensación de ahogo o falta de aire',{diafragmatica:3,vagal:2,caja:2}],
+['cat','Pensamientos de que algo terrible va a pasar',{defusion:3,reestructuracion:3,grounding:1}],
+['blo','Mente en blanco',{grounding:3,presente:2,cinestesico:2}],
+['des','Todo se siente irreal, como un sueño',{presente:3,grounding:3,temperatura:2}],
+['ten','Cuerpo tenso o temblando',{cinestesico:3,diafragmatica:1}],
+['inq','Inquietud, no puedo quedarme quieto/a',{cinestesico:3,caja:1}]
+];
+const STD = ['diafragmatica','grounding','defusion','cinestesico'];
+const tech = id => T.find(t => t.id === id);
+function recommend(keys) {
+  const sc = {};
+  SYM.filter(s => keys.includes(s[0])).forEach(s => Object.entries(s[2]).forEach(([id, w]) => sc[id] = (sc[id] || 0) + w));
+  const r = Object.keys(sc).sort((a, b) => sc[b] - sc[a]).slice(0, 4);
+  return r.length ? r : STD;
+}
+
+/* Tabs */
+const tabs = [...document.querySelectorAll('.tab')];
+function go(id) {
+  tabs.forEach(b => b.setAttribute('aria-selected', b.dataset.t === id));
+  ['crisis', 'lib', 'eval', 'apoyo'].forEach(t => $('#p-' + t).classList.toggle('hide', t !== id));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+tabs.forEach((b, i) => {
+  b.onclick = () => go(b.dataset.t);
+  b.onkeydown = e => { const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (d) { const n = tabs[(i + d + tabs.length) % tabs.length]; n.focus(); go(n.dataset.t); } };
+});
+$('#sos').onclick = () => go('apoyo');
+$('#toEval').onclick = () => go('eval');
+$('#toLib').onclick = () => go('lib');
+
+/* Stop-work */
+const norm = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const RISK = /suicid|quitarme la vida|quitarle la vida|matarme|quiero morir|me quiero morir|quiero morirme|no quiero vivir|no quiero seguir viviendo|acabar con mi vida|terminar con mi vida|acabar con todo|ya no quiero estar aqui|mejor muerto|mejor muerta|sin mi estarian mejor|hacerme dano|lastimarme|autolesion|autolesionar|cortarme|me corto|sobredosis|hacerle dano|lastimar a|matar a|matarlo|matarla|herir a|voy a hacer algo grave/;
+function risky(v) {
+  if (!RISK.test(norm(v))) return false;
+  g = null;
+  ['#free', '#q'].forEach(s => $(s).value = '');
+  $('#run').classList.add('hide'); $('#start').classList.remove('hide');
+  $('#crisis').classList.remove('hide');
+  document.body.style.overflow = 'hidden';
+  $('#crT').focus();
+  return true;
+}
+$('#crX').onclick = () => { $('#crisis').classList.add('hide'); document.body.style.overflow = ''; go('crisis'); };
+
+/* Guía paso a paso */
+let g = null;
+function startGuide(ids) {
+  g = { q: ids, ti: 0, si: 0 };
+  go('crisis');
+  $('#start').classList.add('hide'); $('#run').classList.remove('hide');
+  show();
+}
+function show() {
+  const t = tech(g.q[g.ti]);
+  $('#run').innerHTML = `
+    <p class="prog">Ejercicio ${g.ti + 1} de ${g.q.length} · paso ${g.si + 1} de ${t.s.length}</p>
+    <h2 class="big mt-1">${t.n}</h2>
+    ${g.si === 0 ? `<span class="tg">Para qué sirve</span><p>${t.p}</p>` : ''}
+    <span class="tg">Hazlo así</span><p class="big" style="font-weight:600">${t.s[g.si]}</p>
+    ${t.b ? '<p class="text-sm mt-2">Mira a la paloma: inhala al crecer, exhala al contraerse.</p>' : ''}
+    <div class="row"><button class="btn" id="nx" type="button">Listo, siguiente</button>
+    <button class="btn sec" id="sk" type="button">Saltar este ejercicio</button>
+    <button class="btn sec" id="stp" type="button">Parar</button></div>`;
+  $('#nx').onclick = () => { g.si++; if (g.si >= t.s.length) { g.ti++; g.si = 0; } g.ti >= g.q.length ? check() : show(); };
+  $('#sk').onclick = () => { g.ti++; g.si = 0; g.ti >= g.q.length ? check() : show(); };
+  $('#stp').onclick = () => { g = null; $('#run').classList.add('hide'); $('#start').classList.remove('hide'); };
+}
+function check() {
+  const q = g.q;
+  $('#run').innerHTML = `<p class="prog">¿Cómo vas?</p><h2 class="big">Lo estás haciendo muy bien.</h2>
+    <p class="mt-1">¿Cómo te sientes ahora, comparado con hace un rato?</p>
+    <div class="row"><button class="btn sage" id="ok" type="button">Más tranquilo/a</button>
+    <button class="btn sec" id="eq" type="button">Igual</button>
+    <button class="btn sec" id="wr" type="button">Peor</button></div>`;
+  $('#ok').onclick = () => {
+    $('#run').innerHTML = `<h2 class="big">Gracias por quedarte.</h2><p class="mt-1">Si esto te pasa seguido, puede ayudarte hablar con un psicólogo o una psicóloga. Pedir ayuda también es cuidarte.</p>
+    <div class="row"><button class="btn sec" id="again" type="button">Volver al inicio</button><button class="btn sec" id="lb" type="button">Ver estrategias</button></div>`;
+    $('#again').onclick = () => $('#stp') ? 0 : (g = null, $('#run').classList.add('hide'), $('#start').classList.remove('hide'));
+    $('#lb').onclick = () => go('lib');
+  };
+  $('#eq').onclick = () => startGuide(q.length > 1 ? q.slice().reverse() : STD);
+  $('#wr').onclick = () => go('apoyo');
+}
+$('#std').onclick = () => startGuide(STD);
+function free() {
+  const v = $('#free').value.trim();
+  if (!v || risky(v)) return;
+  const n = norm(v), k = [];
+  if (/corazon|taquicard|palpita|late/.test(n)) k.push('taq');
+  if (/aire|ahog|respirar/.test(n)) k.push('aho');
+  if (/peor|catastrof|y si |desastre/.test(n)) k.push('cat');
+  if (/bloque|en blanco|no puedo pensar/.test(n)) k.push('blo');
+  if (/irreal|desconect|desrealiz|como un sueno/.test(n)) k.push('des');
+  if (/tembl|tension|rigid/.test(n)) k.push('ten');
+  if (/inquiet|quieto|agitad/.test(n)) k.push('inq');
+  $('#free').value = '';
+  startGuide(recommend(k));
+}
+$('#freeGo').onclick = free;
+$('#free').onkeydown = e => { if (e.key === 'Enter') free(); };
+
+/* Biblioteca */
+let cat = 'Todas';
+const CATS = ['Todas', 'Cuerpo y respiración', 'Sentidos y presente', 'Pensamientos', 'Movimiento'];
+function renderCats() {
+  $('#cats').innerHTML = CATS.map(c => `<button class="chip" data-c="${c}" aria-pressed="${c === cat}" type="button">${c}</button>`).join('');
+}
+function renderLib() {
+  const q = norm($('#q').value.trim());
+  const list = T.filter(t => (cat === 'Todas' || t.c === cat) && (!q || norm(t.n + ' ' + t.k + ' ' + t.c + ' ' + t.p).includes(q)));
+  $('#libList').innerHTML = list.length ? list.map(t => `<details class="card"><summary>${t.n}<span class="pill">${t.c}</span></summary>
+    <span class="tg">Para qué sirve</span><p>${t.p}</p><span class="tg">Paso a paso</span><ol>${t.s.map(s => `<li>${s}</li>`).join('')}</ol>
+    <div class="row"><button class="btn" data-id="${t.id}" type="button">Practicar ahora</button></div></details>`).join('')
+    : '<div class="card">No encontré nada con esa palabra. Prueba con otra, o cuéntame cómo te sientes en Autoevaluación.</div>';
+}
+$('#cats').onclick = e => { const c = e.target.closest('[data-c]'); if (c) { cat = c.dataset.c; renderCats(); renderLib(); } };
+$('#libList').onclick = e => { const b = e.target.closest('[data-id]'); if (b) startGuide([b.dataset.id]); };
+$('#q').oninput = () => { if (!risky($('#q').value)) renderLib(); };
+renderCats(); renderLib();
+
+/* Autoevaluación */
+$('#syms').innerHTML = SYM.map(s => `<button class="chip" data-k="${s[0]}" aria-pressed="false" type="button">${s[1]}</button>`).join('');
+$('#syms').onclick = e => { const c = e.target.closest('[data-k]'); if (c) c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') !== 'true'); };
+$('#inten').oninput = e => $('#intv').textContent = e.target.value;
+$('#rec').onclick = () => {
+  const k = [...document.querySelectorAll('#syms [aria-pressed=true]')].map(b => b.dataset.k);
+  if (!k.length) { $('#res').innerHTML = '<div class="card">Marca al menos algo que sientas para poder sugerirte ejercicios.</div>'; return; }
+  const ids = recommend(k), hi = +$('#inten').value >= 8;
+  $('#res').innerHTML = `${hi ? '<div class="card" style="border:2px solid var(--ink)"><strong>Lo que sientes es muy fuerte ahora.</strong> Mientras practicas, puedes llamar a una línea de ayuda o buscar a alguien cerca. <button class="btn sec" id="hl" type="button" style="margin-top:.5rem">Ver líneas de ayuda</button></div>' : ''}
+    <div class="card"><h2 class="big">Esto puede ayudarte</h2>
+    <ol style="list-style:decimal;padding-left:1.2rem;margin-top:.5rem">${ids.map(i => `<li class="mb-2"><strong>${tech(i).n}</strong><span class="pill">${tech(i).c}</span><br>${tech(i).p}</li>`).join('')}</ol>
+    <p class="text-sm">Te los ordené según lo que marcaste. Esto no es un diagnóstico.</p>
+    <div class="row"><button class="btn" id="gs" type="button">Empezar paso a paso</button><button class="btn sec" id="gl" type="button">Ver en Estrategias</button></div></div>`;
+  $('#gs').onclick = () => startGuide(ids);
+  $('#gl').onclick = () => go('lib');
+  if (hi) $('#hl').onclick = () => go('apoyo');
+};
+</script>
+</body>
+</html>
